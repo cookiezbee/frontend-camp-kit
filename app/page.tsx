@@ -25,12 +25,11 @@ export default function Home() {
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-4">
-            Конструктор компонентов для школьников
+            Конструктор компонентов
           </p>
           
           <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-10">
-            Готовые React компоненты, которые можно копировать и настраивать под свой проект. 
-            Создавай крутые сайты, как из кубиков Lego!
+            Готовые React компоненты, которые можно копировать и настраивать под свой проект.
           </p>
 
           <div className="flex gap-4 justify-center flex-wrap">

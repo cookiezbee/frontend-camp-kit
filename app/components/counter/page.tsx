@@ -154,36 +154,34 @@ export default function Counter({
           <ComponentPreview
             title="Практические примеры"
             description="Где можно использовать счётчик?"
-            code={`<div className="space-y-4">
-  <div>
-    <p className="mb-2">Количество товаров:</p>
-    <Counter initialValue={1} min={1} max={99} />
-  </div>
-  
-  <div>
-    <p className="mb-2">Возраст:</p>
-    <Counter initialValue={18} min={0} max={120} />
-  </div>
-  
-  <div>
-    <p className="mb-2">Оценка (0-5):</p>
-    <Counter initialValue={3} min={0} max={5} />
-  </div>
+            code={`<div>
+  <p className="mb-2">Количество товаров:</p>
+  <Counter initialValue={1} min={1} max={99} />
+</div>
+
+<div>
+  <p className="mb-2">Возраст:</p>
+  <Counter initialValue={18} min={0} max={120} />
+</div>
+
+<div>
+  <p className="mb-2">Оценка (0-5):</p>
+  <Counter initialValue={3} min={0} max={5} />
 </div>`}
           >
-            <div className="space-y-6 w-full max-w-md">
-              <div>
-                <p className="mb-3 text-gray-700 font-medium">Количество товаров:</p>
+            <div>
+              <div className="mb-6">
+                <p className="mb-2 text-gray-700 font-medium">Количество товаров:</p>
                 <Counter initialValue={1} min={1} max={99} />
               </div>
               
-              <div>
-                <p className="mb-3 text-gray-700 font-medium">Возраст:</p>
+              <div className="mb-6">
+                <p className="mb-2 text-gray-700 font-medium">Возраст:</p>
                 <Counter initialValue={18} min={0} max={120} />
               </div>
               
               <div>
-                <p className="mb-3 text-gray-700 font-medium">Оценка (0-5):</p>
+                <p className="mb-2 text-gray-700 font-medium">Оценка (0-5):</p>
                 <Counter initialValue={3} min={0} max={5} />
               </div>
             </div>
