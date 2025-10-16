@@ -17,15 +17,15 @@ export default function Header() {
   ];
 
   const components = [
-    { name: 'Button', path: '/components/button', icon: '🔘' },
-    { name: 'Card', path: '/components/card', icon: '🎴' },
-    { name: 'Input', path: '/components/input', icon: '📝' },
+    { name: 'Кнопка', path: '/components/button', icon: '🔘' },
+    { name: 'Карточка', path: '/components/card', icon: '🎴' },
+    { name: 'Поле ввода', path: '/components/input', icon: '📝' },
     { name: 'Badge', path: '/components/badge', icon: '🏷️' },
-    { name: 'Modal', path: '/components/modal', icon: '🪟' },
-    { name: 'Header', path: '/components/header', icon: '📰' },
-    { name: 'Footer', path: '/components/footer', icon: '📄' },
+    { name: 'Модальное окно', path: '/components/modal', icon: '🪟' },
+    { name: 'Шапка', path: '/components/header', icon: '📰' },
+    { name: 'Подвал', path: '/components/footer', icon: '📄' },
     { name: 'Hero', path: '/components/hero', icon: '🎯' },
-    { name: 'Counter', path: '/components/counter', icon: '🔢' },
+    { name: 'Счетчик', path: '/components/counter', icon: '🔢' },
     { name: 'Contact Form', path: '/components/contact-form', icon: '✉️' },
   ];
 

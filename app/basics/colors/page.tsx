@@ -78,7 +78,7 @@ export default function ColorsPage() {
             </p>
             </div>
 
-          <div className="mt-6 bg-blue-50 border-l-4 border-blue-500 p-4">
+          <div className="mt-6 bg-blue-50 rounded border-l-4 border-blue-500 p-4">
             <p className="text-blue-900">
               <strong>💡 Совет:</strong> 500 — средний оттенок, чаще всего используется. 50-200 — светлые оттенки для фонов. 700-900 — тёмные для акцентов.
             </p>

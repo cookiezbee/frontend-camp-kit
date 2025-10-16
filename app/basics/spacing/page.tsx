@@ -200,7 +200,7 @@ export default function SpacingPage() {
             </div>
           </div>
 
-          <div className="mt-6 bg-blue-50 border-l-4 border-blue-500 p-4">
+          <div className="mt-6 rounded bg-blue-50 border-l-4 border-blue-500 p-4">
             <p className="text-blue-900">
               <strong>💡 Совет:</strong> Используй чётные числа (2, 4, 6, 8) — они создают более гармоничный дизайн
             </p>

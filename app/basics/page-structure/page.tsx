@@ -204,7 +204,7 @@ export default function HomePage() {
         </div>
 
         {/* Базовая структура */}
-        <div className="mb-12 bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-200">
+        <div className="mb-12 bg-white rounded-2xl shadow-lg p-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
             Базовая структура секции
           </h2>
@@ -340,13 +340,13 @@ export default function HomePage() {
         </div>
 
         {/* Как собрать страницу */}
-        <div className="mb-8 bg-white rounded-2xl shadow-lg p-8 border-2 border-purple-100">
+        <div className="mb-8 bg-white rounded-2xl shadow-lg p-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
             Как собрать полную страницу?
           </h2>
           <div className="space-y-4 mb-6">
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
                 1
               </div>
               <div>
@@ -359,7 +359,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
                 2
               </div>
               <div>
@@ -369,7 +369,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
                 3
               </div>
               <div>
@@ -382,7 +382,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">
+              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
                 4
               </div>
               <div>
@@ -456,7 +456,7 @@ export default function HomePage() {
           </div>
 
           {/* Как добавить фоновое изображение */}
-          <div className="bg-white rounded-2xl shadow-lg p-8 border-2 border-blue-100">
+          <div className="bg-white rounded-2xl shadow-lg p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Как добавить фоновое изображение
             </h3>

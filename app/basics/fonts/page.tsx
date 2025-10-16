@@ -14,7 +14,7 @@ export default function FontsPage() {
         </div>
 
         {/* Шаг 1 */}
-        <div className="mb-8 border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm p-8">
+        <div className="mb-8 rounded-2xl overflow-hidden bg-white shadow-lg p-8">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xl">
               1
@@ -44,7 +44,7 @@ export default function FontsPage() {
         </div>
 
         {/* Шаг 2 */}
-        <div className="mb-8 border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm p-8">
+        <div className="mb-8 rounded-2xl overflow-hidden bg-white shadow-lg p-8">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xl">
               2
@@ -97,7 +97,7 @@ const inter = Inter({
         </div>
 
         {/* Шаг 3 */}
-        <div className="mb-8 border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm p-8">
+        <div className="mb-8 rounded-2xl overflow-hidden bg-white shadow-lg p-8">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-xl">
               3
@@ -155,7 +155,7 @@ const montserrat = Montserrat({
         </div>
 
         {/* Готовые примеры */}
-        <div className="bg-white rounded-2xl shadow-lg p-8">
+        <div className="mb-8 bg-white rounded-2xl shadow-lg p-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
             Готовые коды для популярных шрифтов
           </h2>
