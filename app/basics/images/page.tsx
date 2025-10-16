@@ -66,8 +66,8 @@ export default function ImagesPage() {
 />`}
               </pre>
               <p className="text-gray-600">
-                <strong>src="/images/photo.jpg"</strong> — путь начинается с / (от папки public)<br/>
-                <strong>alt="..."</strong> — описание картинки (обязательно!)<br/>
+                <strong>src=&#34;/images/photo.jpg&#34;</strong> — путь начинается с / (от папки public)<br/>
+                <strong>alt=&#34;...&#34;</strong> — описание картинки (обязательно!)<br/>
                 <strong>className</strong> — стили для картинки
               </p>
             </div>
