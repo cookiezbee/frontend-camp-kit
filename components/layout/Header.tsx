@@ -7,7 +7,11 @@ import { Menu, X, Code2 } from 'lucide-react';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Список всех компонентов для навигации
+  const basics = [
+    { name: 'Как собрать страницу', path: '/basics/page-structure', icon: '📄' },
+    { name: 'Шрифты', path: '/basics/fonts', icon: '🔤' },
+  ];
+
   const components = [
     { name: 'Button', path: '/components/button', icon: '🔘' },
     { name: 'Card', path: '/components/card', icon: '🎴' },
@@ -46,6 +50,32 @@ export default function Header() {
               Главная
             </Link>
             
+            {/* Основы */}
+            <div className="relative group">
+              <button className="text-gray-600 hover:text-blue-600 font-medium transition-colors flex items-center gap-1">
+                Основы
+                <span className="text-xs">▼</span>
+              </button>
+              
+              <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="p-2">
+                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-2">
+                    Базовые знания
+                  </div>
+                  {basics.map((item) => (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                    >
+                      <span className="text-xl">{item.icon}</span>
+                      <span className="font-medium">{item.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {/* Выпадающее меню с компонентами */}
             <div className="relative group">
               <button className="text-gray-600 hover:text-blue-600 font-medium transition-colors flex items-center gap-1">

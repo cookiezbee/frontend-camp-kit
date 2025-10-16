@@ -1,17 +1,21 @@
 // ============================================
-// КОМПОНЕНТ: КАРТОЧКА (Card)
+// 🎨 КОМПОНЕНТ: КАРТОЧКА (Card)
 // ============================================
 // Универсальная карточка для товаров, постов,
 // профилей и любого другого контента
 // ============================================
+
+import Button from './Button';
 
 interface CardProps {
   title: string;                    // Заголовок карточки
   description?: string;             // Описание (необязательно)
   image?: string;                   // Картинка (необязательно)
   imageMode?: 'cover' | 'contain';
+  imagePosition?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'left-top' | 'right-top';
   badge?: string;                   // Значок (необязательно)
   buttonText?: string;              // Текст кнопки (необязательно)
+  buttonVariant?: 'primary' | 'secondary';  // ← ДОБАВЛЕНО
   onButtonClick?: () => void;       // Что делать при клике на кнопку
   children?: React.ReactNode;       // Дополнительный контент
 }
@@ -21,39 +25,38 @@ export default function Card({
   description, 
   image,
   imageMode = 'cover',
+  imagePosition = 'center',
   badge,
   buttonText,
+  buttonVariant = 'primary',        // ← ДОБАВЛЕНО
   onButtonClick,
   children 
 }: CardProps) {
 
   // ============================================
-  // НАСТРОЙ ЦВЕТА И СТИЛИ!
+  // 🎨 НАСТРОЙ ЦВЕТА И СТИЛИ!
   // ============================================
   const styles = {
     card: "bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100",
-    // Можешь изменить: rounded-xl → rounded-2xl (больше скругление)
-    // Или добавить: hover:scale-105 (увеличение при наведении)
+    // 💡 Можешь изменить: rounded-xl → rounded-2xl (больше скругление)
+    // 💡 Или добавить: hover:scale-105 (увеличение при наведении)
     
     imageContainer: "relative w-full h-48 overflow-hidden bg-gray-100",
-    // Измени высоту: h-48 → h-64 (выше) или h-40 (ниже)
+    // 💡 Измени высоту: h-48 → h-64 (выше) или h-40 (ниже)
     
-    image: `w-full h-full ${imageMode === 'cover' ? 'object-cover' : 'object-contain'}`,
+    image: `w-full h-full ${imageMode === 'cover' ? 'object-cover' : 'object-contain'} object-${imagePosition}`,
     
     badge: "absolute top-3 right-3 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold",
-    // Цвет значка: bg-blue-500 → bg-red-500 (красный)
+    // 💡 Цвет значка: bg-blue-500 → bg-red-500 (красный)
     
     content: "p-6",
-    // Больше отступов: p-6 → p-8
+    // 💡 Больше отступов: p-6 → p-8
     
     title: "text-xl font-bold text-gray-900 mb-2",
-    // Размер заголовка: text-xl → text-2xl (больше)
+    // 💡 Размер заголовка: text-xl → text-2xl (больше)
     
     description: "text-gray-600 mb-4",
-    // Цвет текста: text-gray-600 → text-gray-700 (темнее)
-    
-    button: "w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors font-medium"
-    // Измени цвет кнопки: bg-blue-500 → bg-green-500
+    // 💡 Цвет текста: text-gray-600 → text-gray-700 (темнее)
   };
 
   return (
@@ -92,14 +95,16 @@ export default function Card({
         {/* Дополнительный контент */}
         {children}
 
-        {/* Кнопка (если нужна) */}
+        {/* Кнопка (если нужна) - ИЗМЕНЕНО */}
         {buttonText && (
-          <button 
+          <Button 
+            variant={buttonVariant}
             onClick={onButtonClick}
-            className={styles.button}
+            size="md"
+            fullWidth
           >
             {buttonText}
-          </button>
+          </Button>
         )}
       </div>
     </div>
@@ -107,7 +112,7 @@ export default function Card({
 }
 
 // ============================================
-// КАК ИСПОЛЬЗОВАТЬ?
+// 📖 КАК ИСПОЛЬЗОВАТЬ?
 // ============================================
 //
 // 1. Простая карточка:
@@ -128,6 +133,7 @@ export default function Card({
 //      title="Статья"
 //      description="Интересная статья"
 //      buttonText="Читать"
+//      buttonVariant="primary"
 //      onButtonClick={() => alert('Клик!')}
 //    />
 //

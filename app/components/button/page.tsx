@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import ComponentPreview from "@/components/showcase/ComponentPreview";
@@ -7,40 +6,65 @@ import Button from "@/components/ui/Button";
 export default function ButtonPage() {
   const buttonCode = `interface ButtonProps {
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "primary" | "secondary";
+  size?: "sm" | "md" | "lg";
   onClick?: () => void;
   disabled?: boolean;
+  fullWidth?: boolean;
 }
 
-export default function Button({ 
-  children, 
-  variant = 'primary',
-  size = 'md',
+export default function Button({
+  children,
+  variant = "primary",
+  size = "md",
   onClick,
-  disabled = false 
+  disabled = false,
+  fullWidth = false,
 }: ButtonProps) {
-  
+
   const colors = {
-    primary: "bg-blue-500 hover:bg-blue-600 text-white",
-    secondary: "bg-gray-200 hover:bg-gray-300 text-gray-800",
-    danger: "bg-red-500 hover:bg-red-600 text-white"
+    primary: \`
+      bg-blue-500 
+      hover:bg-blue-600 
+      hover:shadow-[4px_4px_12px_rgba(0,0,0,0.3)]
+      active:bg-transparent
+      active:text-blue-600
+      active:shadow-[inset_0_0_0_2px_rgb(37,99,235)]
+      disabled:bg-gray-300
+      disabled:text-gray-500
+      disabled:cursor-not-allowed
+      disabled:hover:shadow-none
+      text-white
+    \`,
+    
+    secondary: \`
+      bg-gray-200 
+      hover:bg-gray-300 
+      hover:shadow-[4px_4px_12px_rgba(0,0,0,0.2)]
+      active:bg-transparent
+      active:text-gray-700
+      active:shadow-[inset_0_0_0_2px_rgb(55,65,81)]
+      disabled:bg-gray-100
+      disabled:text-gray-400
+      disabled:cursor-not-allowed
+      disabled:hover:shadow-none
+      text-gray-800
+    \`,
   };
 
   const sizes = {
-    sm: "px-3 py-1.5 text-sm",
-    md: "px-5 py-2.5 text-base",
-    lg: "px-6 py-3 text-lg"
+    sm: "px-4 py-2 text-sm",
+    md: "px-6 py-2.5 text-base",
+    lg: "px-8 py-3 text-lg",
   };
 
-  const baseStyles = "font-medium rounded-lg transition-all duration-200";
-  const disabledStyles = disabled 
-    ? "opacity-50 cursor-not-allowed" 
-    : "hover:scale-105 active:scale-95";
+  const baseStyles = "font-medium rounded-lg transition-all duration-150 justify-center";
+
+  const widthStyle = fullWidth ? "w-full" : "";
 
   return (
-    <button 
-      className={\`\${baseStyles} \${colors[variant]} \${sizes[size]} \${disabledStyles}\`}
+    <button
+      className={\`\${baseStyles} \${widthStyle} \${colors[variant]} \${sizes[size]}\`}
       onClick={onClick}
       disabled={disabled}
     >
@@ -107,37 +131,13 @@ export default function Button({
           </ComponentPreview>
         </div>
 
-        {/* Danger кнопки */}
-        <div className="mb-8">
-          <ComponentPreview
-            title="Danger кнопки - опасные действия"
-            description="Используй для удаления, отмены подписки и других опасных действий"
-            code={`<Button variant="danger" size="sm">Удалить</Button>
-<Button variant="danger" size="md">Отменить подписку</Button>
-<Button variant="danger" size="lg">Удалить навсегда</Button>`}
-          >
-            <div className="flex gap-4 flex-wrap items-center">
-              <Button variant="danger" size="sm">
-                Удалить
-              </Button>
-              <Button variant="danger" size="md">
-                Отменить подписку
-              </Button>
-              <Button variant="danger" size="lg">
-                Удалить навсегда
-              </Button>
-            </div>
-          </ComponentPreview>
-        </div>
-
         {/* Disabled состояние */}
         <div className="mb-8">
           <ComponentPreview
             title="Disabled - неактивная кнопка"
             description="Когда действие временно недоступно"
             code={`<Button variant="primary" disabled>Primary</Button>
-<Button variant="secondary" disabled>Secondary</Button>
-<Button variant="danger" disabled>Danger</Button>`}
+<Button variant="secondary" disabled>Secondary</Button>`}
           >
             <div className="flex gap-4 flex-wrap items-center">
               <Button variant="primary" disabled>
@@ -145,9 +145,6 @@ export default function Button({
               </Button>
               <Button variant="secondary" disabled>
                 Secondary
-              </Button>
-              <Button variant="danger" disabled>
-                Danger
               </Button>
             </div>
           </ComponentPreview>
@@ -244,7 +241,19 @@ export default function MyPage() {
                 </p>
                 <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
                   {`const colors = {
-  primary: "bg-blue-500 hover:bg-blue-600 text-white",
+  primary: \`
+    bg-blue-500 
+    hover:bg-blue-600 
+    hover:shadow-[4px_4px_12px_rgba(0,0,0,0.3)]
+    active:bg-transparent
+    active:text-blue-600
+    active:shadow-[inset_0_0_0_2px_rgb(37,99,235)]
+    disabled:bg-gray-300
+    disabled:text-gray-500
+    disabled:cursor-not-allowed
+    disabled:hover:shadow-none
+    text-white
+  \`,
   // Замени blue на green для зеленой кнопки!
 };`}
                 </pre>
