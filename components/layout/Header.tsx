@@ -9,7 +9,11 @@ export default function Header() {
 
   const basics = [
     { name: 'Как собрать страницу', path: '/basics/page-structure', icon: '📄' },
+    { name: 'Цвета и стили', path: '/basics/colors', icon: '🎨' },
+    { name: 'Отступы и размеры', path: '/basics/spacing', icon: '📏' },
     { name: 'Шрифты', path: '/basics/fonts', icon: '🔤' },
+    { name: 'Работа с изображениями', path: '/basics/images', icon: '🖼️' },
+    { name: 'Полезные материалы', path: '/resources', icon: '💡' },
   ];
 
   const components = [
@@ -135,6 +139,25 @@ export default function Header() {
               >
                 Главная
               </Link>
+
+              <div className="px-4 py-2">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  Основы
+                </p>
+                <div className="flex flex-col gap-1">
+                  {basics.map((item) => (
+                    <Link
+                      key={item.path}
+                      href={item.path}
+                      className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      <span className="text-lg">{item.icon}</span>
+                      <span className="font-medium">{item.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
               
               <div className="px-4 py-2">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">

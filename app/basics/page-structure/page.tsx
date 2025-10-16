@@ -518,7 +518,7 @@ style={{
 }}
 >
 {/* Затемнение */}
-<div className="absolute inset-0 bg-black bg-opacity-50"></div>
+<div className="absolute inset-0 bg-black/50"></div>
 
 {/* Контент поверх затемнения */}
 <div className="relative text-center text-white">
@@ -536,7 +536,7 @@ style={{
               <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded">
                 <p className="text-amber-900">
                   <strong>💡 Совет:</strong> Для затемнения меняй{" "}
-                  <code className="bg-white px-1 rounded">bg-opacity-50</code>
+                  <code className="bg-white px-1 rounded">bg-black/50</code>
                   (50 = 50% затемнения). Можно поставить 30, 40, 60, 70
                 </p>
               </div>
