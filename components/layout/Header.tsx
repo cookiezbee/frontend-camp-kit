@@ -25,7 +25,7 @@ export default function Header() {
     { name: 'Шапка', path: '/components/header', icon: '📰' },
     { name: 'Подвал', path: '/components/footer', icon: '📄' },
     { name: 'Hero', path: '/components/hero', icon: '🎯' },
-    { name: 'Счетчик', path: '/components/counter', icon: '🔢' },
+    { name: 'Счётчик', path: '/components/counter', icon: '🔢' },
     { name: 'Contact Form', path: '/components/contact-form', icon: '✉️' },
   ];
 
@@ -108,6 +108,13 @@ export default function Header() {
             </div>
 
             <Link 
+              href="/gallery" 
+              className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
+            >
+              Галерея сайтов
+            </Link>
+
+            <Link 
               href="/about" 
               className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
             >
@@ -177,6 +184,14 @@ export default function Header() {
                   ))}
                 </div>
               </div>
+
+              <Link 
+                href="/gallery" 
+                className="px-4 py-2 rounded-lg hover:bg-gray-50 font-medium text-gray-700"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Галерея сайтов
+              </Link>
 
               <Link 
                 href="/about" 
