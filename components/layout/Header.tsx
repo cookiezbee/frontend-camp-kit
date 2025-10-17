@@ -20,7 +20,7 @@ export default function Header() {
     { name: 'Кнопка', path: '/components/button', icon: '🔘' },
     { name: 'Карточка', path: '/components/card', icon: '🎴' },
     { name: 'Поле ввода', path: '/components/input', icon: '📝' },
-    { name: 'Badge', path: '/components/badge', icon: '🏷️' },
+    { name: 'Значок', path: '/components/badge', icon: '🏷️' },
     { name: 'Модальное окно', path: '/components/modal', icon: '🪟' },
     { name: 'Шапка', path: '/components/header', icon: '📰' },
     { name: 'Подвал', path: '/components/footer', icon: '📄' },

@@ -6,6 +6,7 @@ import Card from "@/components/ui/Card";
 
 export default function CardPage() {
   const cardCode = `import Button from './Button';
+  import Badge from './Badge';
 
 interface CardProps {
   title: string;
@@ -14,6 +15,7 @@ interface CardProps {
   imageMode?: 'cover' | 'contain';
   imagePosition?: 'center' | 'top' | 'bottom' | 'left' | 'right' | 'left-top' | 'right-top';
   badge?: string;
+  badgeVariant?: "default" | "success" | "warning" | "error" | "info";
   buttonText?: string;
   buttonVariant?: 'primary' | 'secondary';
   onButtonClick?: () => void;
@@ -27,6 +29,7 @@ export default function Card({
   imageMode = 'cover',
   imagePosition = 'center',
   badge,
+  badgeVariant = 'info',
   buttonText,
   buttonVariant = 'primary',
   onButtonClick,
@@ -37,7 +40,7 @@ export default function Card({
     card: "bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100",
     imageContainer: "relative w-full h-48 overflow-hidden bg-gray-100",
     image: \`w-full h-full \${imageMode === 'cover' ? 'object-cover' : 'object-contain'} object-\${imagePosition}\`,
-    badge: "absolute top-3 right-3 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold",
+    badgeContainer: "absolute top-3 right-3",
     content: "p-6",
     title: "text-xl font-bold text-gray-900 mb-2",
     description: "text-gray-600 mb-4",
@@ -48,7 +51,13 @@ export default function Card({
       {image && (
         <div className={styles.imageContainer}>
           <img src={image} alt={title} className={styles.image} />
-          {badge && <span className={styles.badge}>{badge}</span>}
+          {badge && (
+            <div className={styles.badgeContainer}>
+              <Badge variant={badgeVariant} size="md">
+                {badge}
+              </Badge>
+            </div>
+          )}
         </div>
       )}
 
@@ -159,6 +168,7 @@ export default function Card({
   description="Успей купить со скидкой!"
   image="/images/iphones.jpg"
   badge="Скидка 50%"
+  badgeVariant="info"
   buttonText="Купить"
 />`}
           >
@@ -168,6 +178,7 @@ export default function Card({
                 description="Успей купить со скидкой!"
                 image="/images/iphones.jpg"
                 badge="Скидка 50%"
+                badgeVariant="info"
                 buttonText="Купить"
               />
             </div>
@@ -180,12 +191,12 @@ export default function Card({
             title="Изображение БЕЗ обрезки"
             description="Используй imageMode='contain' чтобы показать всё изображение целиком"
             code={`<Card 
-        title="Продукт полностью"
-        description="Изображение не обрезается, видно всё целиком"
-        image="/images/coffee.jpg"
-        imageMode="contain"
-        buttonText="Купить"
-        />`}
+  title="Продукт полностью"
+  description="Изображение не обрезается, видно всё целиком"
+  image="/images/coffee.jpg"
+  imageMode="contain"
+  buttonText="Купить"
+/>`}
         >
             <div className="w-full max-w-sm">
             <Card
@@ -205,17 +216,17 @@ export default function Card({
             title="Сравнение: cover vs contain"
             description="Слева - с обрезкой (cover), справа - без обрезки (contain)"
             code={`<div className="grid grid-cols-2 gap-6">
-        <Card 
-            title="С обрезкой"
-            image="/images/coffee.jpg"
-            imageMode="cover"
-        />
-        <Card 
-            title="Без обрезки"
-            image="/images/coffee.jpg"
-            imageMode="contain"
-        />
-        </div>`}
+<Card 
+    title="С обрезкой"
+    image="/images/coffee.jpg"
+    imageMode="cover"
+/>
+<Card 
+    title="Без обрезки"
+    image="/images/coffee.jpg"
+    imageMode="contain"
+/>
+</div>`}
         >
             <div className="w-full grid grid-cols-2 gap-6">
             <Card
