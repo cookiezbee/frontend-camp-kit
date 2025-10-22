@@ -24,9 +24,9 @@ export default function Header() {
     { name: 'Модальное окно', path: '/components/modal', icon: '🪟' },
     { name: 'Шапка', path: '/components/header', icon: '📰' },
     { name: 'Подвал', path: '/components/footer', icon: '📄' },
-    { name: 'Hero', path: '/components/hero', icon: '🎯' },
+    { name: 'Главная секция', path: '/components/hero', icon: '🎯' },
     { name: 'Счётчик', path: '/components/counter', icon: '🔢' },
-    { name: 'Contact Form', path: '/components/contact-form', icon: '✉️' },
+    { name: 'Формы', path: '/components/contact-form', icon: '✉️' },
     { name: 'Чекбоксы и радиокнопки', path: '/components/checkbox-radio', icon: '✅' },
   ];
 
