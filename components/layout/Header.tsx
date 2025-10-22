@@ -27,6 +27,7 @@ export default function Header() {
     { name: 'Hero', path: '/components/hero', icon: '🎯' },
     { name: 'Счётчик', path: '/components/counter', icon: '🔢' },
     { name: 'Contact Form', path: '/components/contact-form', icon: '✉️' },
+    { name: 'Чекбоксы и радиокнопки', path: '/components/checkbox-radio', icon: '✅' },
   ];
 
   return (

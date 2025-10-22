@@ -4,7 +4,7 @@ import Header from "@/components/layout/Header";
 
 export const metadata: Metadata = {
   title: "Code Bricks - Конструктор компонентов",
-  description: "Библиотека готовых React компонентов для школьников",
+  description: "Библиотека готовых React компонентов",
 };
 
 export default function RootLayout({
