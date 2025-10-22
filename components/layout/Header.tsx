@@ -13,6 +13,7 @@ export default function Header() {
     { name: 'Отступы и размеры', path: '/basics/spacing', icon: '📏' },
     { name: 'Шрифты', path: '/basics/fonts', icon: '🔤' },
     { name: 'Работа с изображениями', path: '/basics/images', icon: '🖼️' },
+    { name: 'AI Помощник', path: '/basics/ai-helper', icon: '🤖' },
     { name: 'Полезные материалы', path: '/resources', icon: '💡' },
   ];
 

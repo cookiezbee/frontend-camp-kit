@@ -52,9 +52,9 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
 
   const navigation = [
     { label: "Главная", href: "/" },
-    { label: "О нас", href: "/about" },
-    { label: "Услуги", href: "/services" },
-    { label: "Контакты", href: "/contact" },
+    { label: "О нас", href: "/" },
+    { label: "Услуги", href: "/" },
+    { label: "Контакты", href: "/" },
   ];
 
   return (
