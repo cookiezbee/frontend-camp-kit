@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 export default function ButtonPage() {
   const buttonCode = `interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   onClick?: () => void;
   disabled?: boolean;
@@ -50,6 +50,21 @@ export default function Button({
       disabled:hover:shadow-none
       text-gray-800
     \`,
+    
+    outline: \`
+      border-2 border-gray-300 
+      hover:shadow-[4px_4px_12px_rgba(0,0,0,0.2)]
+      hover:bg-gray-100
+      active:bg-transparent
+      active:text-gray-700
+      active:!border-transparent
+      active:shadow-[inset_0_0_0_2px_rgb(200,200,200)]
+      disabled:bg-gray-100
+      disabled:text-gray-400
+      disabled:cursor-not-allowed
+      disabled:hover:shadow-none
+      text-gray-800
+    \`,
   };
 
   const sizes = {
@@ -59,7 +74,6 @@ export default function Button({
   };
 
   const baseStyles = "font-medium rounded-lg transition-all duration-150 justify-center";
-
   const widthStyle = fullWidth ? "w-full" : "";
 
   return (
@@ -131,13 +145,36 @@ export default function Button({
           </ComponentPreview>
         </div>
 
+        {/* Outline кнопки */}
+        <div className="mb-8">
+          <ComponentPreview
+            title="Outline кнопки - контурные кнопки"
+            code={`<Button variant="outline" size="sm">Отмена</Button>
+<Button variant="outline" size="md">Отменить</Button>
+<Button variant="outline" size="lg">Отклонить</Button>`}
+          >
+            <div className="flex gap-4 flex-wrap items-center">
+              <Button variant="outline" size="sm">
+                Отмена
+              </Button>
+              <Button variant="outline" size="md">
+                Отменить
+              </Button>
+              <Button variant="outline" size="lg">
+                Отклонить
+              </Button>
+            </div>
+          </ComponentPreview>
+        </div>
+
         {/* Disabled состояние */}
         <div className="mb-8">
           <ComponentPreview
             title="Disabled - неактивная кнопка"
             description="Когда действие временно недоступно"
             code={`<Button variant="primary" disabled>Primary</Button>
-<Button variant="secondary" disabled>Secondary</Button>`}
+<Button variant="secondary" disabled>Secondary</Button>
+<Button variant="outline" disabled>Outline</Button>`}
           >
             <div className="flex gap-4 flex-wrap items-center">
               <Button variant="primary" disabled>
@@ -145,6 +182,9 @@ export default function Button({
               </Button>
               <Button variant="secondary" disabled>
                 Secondary
+              </Button>
+              <Button variant="outline" disabled>
+                Outline
               </Button>
             </div>
           </ComponentPreview>
@@ -170,7 +210,7 @@ export default function Button({
 
         {/* Инструкция */}
         <div className="mt-16 p-8 bg-white rounded-2xl shadow-lg border-2 border-blue-100">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
             Как использовать в своем проекте?
           </h2>
 

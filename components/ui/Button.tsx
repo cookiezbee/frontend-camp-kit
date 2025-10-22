@@ -1,6 +1,6 @@
 interface ButtonProps {
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   onClick?: () => void;
   disabled?: boolean;
@@ -38,6 +38,21 @@ export default function Button({
       active:bg-transparent
       active:text-gray-700
       active:shadow-[inset_0_0_0_2px_rgb(55,65,81)]
+      disabled:bg-gray-100
+      disabled:text-gray-400
+      disabled:cursor-not-allowed
+      disabled:hover:shadow-none
+      text-gray-800
+    `,
+
+    outline: `
+      border-2 border-gray-300 
+      hover:shadow-[4px_4px_12px_rgba(0,0,0,0.2)]
+      hover:bg-gray-100
+      active:bg-transparent
+      active:text-gray-700
+      active:!border-transparent
+      active:shadow-[inset_0_0_0_2px_rgb(200,200,200)]
       disabled:bg-gray-100
       disabled:text-gray-400
       disabled:cursor-not-allowed
