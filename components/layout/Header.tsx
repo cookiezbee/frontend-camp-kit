@@ -13,6 +13,7 @@ export default function Header() {
     { name: 'Отступы и размеры', path: '/basics/spacing', icon: '📏' },
     { name: 'Шрифты', path: '/basics/fonts', icon: '🔤' },
     { name: 'Работа с изображениями', path: '/basics/images', icon: '🖼️' },
+    { name: 'API Запросы', path: '/basics/api-requests', icon: '🌐' },
     { name: 'AI Помощник', path: '/basics/ai-helper', icon: '🤖' },
     { name: 'Полезные материалы', path: '/resources', icon: '💡' },
   ];
@@ -27,7 +28,8 @@ export default function Header() {
     { name: 'Подвал', path: '/components/footer', icon: '📄' },
     { name: 'Главная секция', path: '/components/hero', icon: '🎯' },
     { name: 'Счётчик', path: '/components/counter', icon: '🔢' },
-    { name: 'Формы', path: '/components/contact-form', icon: '✉️' },
+    { name: 'Формы', path: '/components/forms', icon: '✉️' },
+    { name: 'Частые вопросы', path: '/components/faq', icon: '❓' },
     { name: 'Чекбоксы и радиокнопки', path: '/components/checkbox-radio', icon: '✅' },
   ];
 
