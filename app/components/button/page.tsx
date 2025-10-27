@@ -233,6 +233,56 @@ export default function Button({
             </div>
 
             <div className="flex gap-4">
+              <div className="flex-shrink-0 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center font-bold text-xl">
+                ⚠️
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-lg mb-2 text-red-600">
+                  ВАЖНО! Добавь  &#34;use client &#34; в начало файла
+                </h3>
+                <p className="text-gray-600 mb-3">
+                  В Next.js все компоненты по умолчанию работают только на сервере. 
+                  Но наша кнопка использует{" "}
+                  <code className="bg-gray-100 px-2 py-1 rounded">onClick</code> - 
+                  это значит она должна работать в браузере у пользователя.
+                </p>
+                <p className="text-gray-600 mb-3">
+                  Чтобы Next.js понял это, нужно написать{" "}
+                  <code className="bg-red-100 px-2 py-1 rounded text-red-700 font-semibold">
+                     &#34;use client&#34;
+                  </code>{" "}
+                  <strong>в самой первой строке файла</strong> (даже перед импортами!):
+                </p>
+                <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
+                  {`'use client'  // ← Эта строка ОБЯЗАТЕЛЬНА!
+
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;  // ← onClick работает только с 'use client'
+  // ...
+}
+
+export default function Button({ ... }) {
+  // код кнопки
+}`}
+                </pre>
+                <div className="mt-3 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                  <p className="text-sm text-yellow-900 font-medium">
+                    <strong>📌 Золотое правило:</strong> Если компонент использует{" "}
+                    <code className="bg-yellow-100 px-1 rounded">onClick</code>,{" "}
+                    <code className="bg-yellow-100 px-1 rounded">useState</code>,{" "}
+                    <code className="bg-yellow-100 px-1 rounded">useEffect</code>{" "}
+                    или другие интерактивные функции — обязательно пиши{" "}
+                    <code className="bg-yellow-100 px-1 rounded font-semibold">
+                      &#34;use client &#34;
+                    </code>{" "}
+                    в первой строке файла!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
               <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">
                 2
               </div>
