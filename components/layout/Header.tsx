@@ -14,6 +14,7 @@ export default function Header() {
     { name: 'Шрифты', path: '/basics/fonts', icon: '🔤' },
     { name: 'Работа с изображениями', path: '/basics/images', icon: '🖼️' },
     { name: 'API Запросы', path: '/basics/api-requests', icon: '🌐' },
+    { name: 'Создание страниц и навигация', path: '/basics/pages-navigation', icon: '🧭' },
     { name: 'AI Помощник', path: '/basics/ai-helper', icon: '🤖' },
     { name: 'Полезные материалы', path: '/resources', icon: '💡' },
   ];

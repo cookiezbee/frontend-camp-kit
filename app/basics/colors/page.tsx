@@ -15,7 +15,7 @@ export default function ColorsPage() {
         </div>
 
         {/* Фоновые цвета */}
-        <section className="mb-16 bg-white rounded-2xl shadow-lg p-8">
+        <section className="mb-16 bg-white9e rounded-2xl shadow-lg p-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
             Фоновые цвета
           </h2>
