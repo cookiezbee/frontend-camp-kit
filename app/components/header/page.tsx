@@ -3,27 +3,29 @@
 import ComponentPreview from "@/components/showcase/ComponentPreview";
 import Header from "@/components/ui/Header";
 import Button from "@/components/ui/Button";
+import Image from "next/image";
 
 export default function HeaderPage() {
   const headerCode = `"use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 interface DropdownLink {
   type: "link";
-  label: string;
+  label: string | React.ReactNode;
   href: string;
 }
 
 interface DropdownText {
   type: "text";
-  label: string;
+  label: string | React.ReactNode;
 }
 
 interface DropdownButton {
   type: "button";
-  label: string;
+  label: string | React.ReactNode;
   onClick: () => void;
 }
 
@@ -31,13 +33,13 @@ type DropdownItem = DropdownLink | DropdownText | DropdownButton;
 
 interface NavigationLink {
   type: "link";
-  label: string;
+  label: string | React.ReactNode;
   href: string;
 }
 
 interface NavigationDropdown {
   type: "dropdown";
-  label: string;
+  label: string | React.ReactNode;
   items: DropdownItem[];
 }
 
@@ -224,12 +226,104 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
               logo={
                 <div className="flex items-center gap-2">
                   <div className="text-3xl">🚀</div>
-                  <span className="text-xl font-bold text-gray-900">
-                    MyApp
-                  </span>
+                  <span className="text-xl font-bold text-gray-900">MyApp</span>
                 </div>
               }
               navigation={navigation}
+            />
+          </ComponentPreview>
+        </div>
+
+        {/* С логотипом SVG через Image */}
+        <div className="mb-8">
+          <ComponentPreview
+            title="С логотипом SVG через путь к файлу"
+            description="Положи SVG в папку public/ и используй Image"
+            code={`<Header 
+  logo={
+    <Image 
+      src="/logo.svg" 
+      alt="Logo" 
+      width={40} 
+      height={40}
+      className="w-10 h-10"
+    />
+  }
+  navigation={navigation}
+/>`}
+          >
+            <Header
+              logo={
+                <div className="text-2xl font-bold text-blue-600">Logo</div>
+              }
+              navigation={navigation}
+            />
+          </ComponentPreview>
+        </div>
+
+        {/* С иконками в навигации через JSX */}
+        <div className="mb-8">
+          <ComponentPreview
+            title="С иконками в навигации"
+            description="Используй JSX для добавления иконок рядом с текстом"
+            code={`const navigationWithIcons = [
+  { 
+    type: "link",
+    label: (
+      <div className="flex items-center gap-2">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span>Главная</span>
+      </div>
+    ),
+    href: "/"
+  },
+  { 
+    type: "link",
+    label: (
+      <div className="flex items-center gap-2">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <span>Контакты</span>
+      </div>
+    ),
+    href: "/contact"
+  },
+];
+
+<Header navigation={navigationWithIcons} />`}
+          >
+            <Header
+              navigation={[
+                {
+                  type: "link" as const,
+                  label: (
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
+                      <span>Главная</span>
+                    </div>
+                  ),
+                  href: "/",
+                },
+                {
+                  type: "link" as const,
+                  label: (
+                    <div className="flex items-center gap-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      <span>Контакты</span>
+                    </div>
+                  ),
+                  href: "/contact",
+                },
+              ]}
             />
           </ComponentPreview>
         </div>
@@ -438,9 +532,7 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
               logo={
                 <div className="flex items-center gap-2">
                   <div className="text-3xl">🚀</div>
-                  <span className="text-xl font-bold text-gray-900">
-                    MyApp
-                  </span>
+                  <span className="text-xl font-bold text-gray-900">MyApp</span>
                 </div>
               }
               navigation={[
@@ -474,6 +566,77 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
               }
             />
           </ComponentPreview>
+        </div>
+
+        {/* Инструкция: Как добавить SVG через путь */}
+        <div className="mt-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Как добавить SVG иконки через путь к файлу?
+          </h2>
+
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <span className="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                Положи SVG в папку public
+              </h3>
+              <p className="text-gray-600 mb-3">Создай папку public/icons/ и положи туда свои SVG файлы</p>
+              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm">
+{`public/
+  icons/
+    home.svg
+    mail.svg
+    user.svg`}
+              </pre>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                Используй Image для логотипа
+              </h3>
+              <p className="text-gray-600 mb-3">Для логотипа используй компонент Image из Next.js</p>
+              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm">
+{`import Image from "next/image";
+
+<Header 
+  logo={
+    <Image 
+      src="/icons/logo.svg" 
+      alt="Logo" 
+      width={40} 
+      height={40}
+    />
+  }
+/>`}
+              </pre>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <span className="bg-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                Для навигации используй JSX
+              </h3>
+              <p className="text-gray-600 mb-3">Для иконок в навигации лучше использовать inline SVG через JSX</p>
+              <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
+{`const navigation = [
+  { 
+    type: "link",
+    label: (
+      <div className="flex items-center gap-2">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3" />
+        </svg>
+        <span>Главная</span>
+      </div>
+    ),
+    href: "/"
+  },
+];`}
+              </pre>
+            </div>
+          </div>
         </div>
 
         {/* Объяснение */}
@@ -596,7 +759,7 @@ export default function RootLayout({ children }) {
               </div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">
-                  Настрой под себя!
+                  Настрой под себя
                 </h3>
                 <p className="text-gray-600 mb-3">
                   Измени цвета в компоненте Header:
@@ -619,7 +782,7 @@ border-gray-200  →    border-blue-600`}
         {/* Полный код */}
         <div className="mt-12">
           <ComponentPreview
-            title="Полный код Header с dropdown"
+            title="Полный код Header с поддержкой иконок"
             description="Скопируй в components/ui/Header.tsx"
             code={headerCode}
           >

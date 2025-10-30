@@ -1,68 +1,165 @@
-interface ButtonProps {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-  size?: "sm" | "md" | "lg";
-  onClick?: () => void;
-  disabled?: boolean;
-  fullWidth?: boolean;
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
+
+interface DropdownLink {
+  type: "link";
+  label: string | React.ReactNode;
+  href: string;
 }
 
-export default function Button({
-  children,
-  variant = "primary",
-  size = "md",
-  onClick,
-  disabled = false,
-  fullWidth = false,
-}: ButtonProps) {
+interface DropdownText {
+  type: "text";
+  label: string | React.ReactNode;
+}
 
-  const colors = {
-    primary: `
-      bg-blue-500 
-      hover:bg-blue-600 
-      hover:shadow-[4px_4px_12px_rgba(0,0,0,0.3)]
-      active:bg-transparent
-      active:text-blue-600
-      active:shadow-[inset_0_0_0_2px_rgb(37,99,235)]
-      disabled:bg-gray-300
-      disabled:text-gray-500
-      disabled:cursor-not-allowed
-      disabled:hover:shadow-none
-      text-white
-    `,
-    
-    secondary: `
-      bg-gray-200 
-      hover:bg-gray-300 
-      hover:shadow-[4px_4px_12px_rgba(0,0,0,0.2)]
-      active:bg-transparent
-      active:text-gray-700
-      active:shadow-[inset_0_0_0_2px_rgb(55,65,81)]
-      disabled:bg-gray-100
-      disabled:text-gray-400
-      disabled:cursor-not-allowed
-      disabled:hover:shadow-none
-      text-gray-800
-    `,
+interface DropdownButton {
+  type: "button";
+  label: string | React.ReactNode;
+  onClick: () => void;
+}
+
+type DropdownItem = DropdownLink | DropdownText | DropdownButton;
+
+interface NavigationLink {
+  type: "link";
+  label: string | React.ReactNode;
+  href: string;
+}
+
+interface NavigationDropdown {
+  type: "dropdown";
+  label: string | React.ReactNode;
+  items: DropdownItem[];
+}
+
+type NavigationItem = NavigationLink | NavigationDropdown;
+
+interface HeaderProps {
+  logo?: React.ReactNode;
+  navigation?: NavigationItem[];
+  actions?: React.ReactNode;
+}
+
+export default function Header({ logo, navigation, actions }: HeaderProps) {
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+
+  const toggleDropdown = (index: number) => {
+    setOpenDropdown(openDropdown === index ? null : index);
   };
 
-  const sizes = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-6 py-2.5 text-base",
-    lg: "px-8 py-3 text-lg",
+  const closeDropdown = () => {
+    setOpenDropdown(null);
   };
-
-  const baseStyles = "font-medium rounded-lg transition-all duration-150 justify-center";
-
-  const widthStyle = fullWidth ? "w-full" : "";
 
   return (
-    <button
-      className={`${baseStyles} ${widthStyle} ${colors[variant]} ${sizes[size]}`}
-      onClick={onClick}
-      disabled={disabled}
-    >
-      {children}
-    </button>
+    <header className="bg-white border-b border-gray-200 shadow-sm relative">
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="flex items-center justify-between gap-8">
+          {/* Логотип */}
+          <div className="flex items-center gap-2 mr-8">
+            {logo || (
+              <div className="text-2xl font-bold text-blue-600">Logo</div>
+            )}
+          </div>
+
+          {/* Навигация */}
+          {navigation && (
+            <nav className="flex items-center gap-6">
+              {navigation.map((item, index) => (
+                <div key={index} className="relative">
+                  {item.type === "link" ? (
+                    <Link
+                      href={item.href}
+                      className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => toggleDropdown(index)}
+                        className="text-gray-700 hover:text-blue-600 font-medium transition-colors flex items-center gap-1"
+                      >
+                        {item.label}
+                        <svg
+                          className={`w-4 h-4 transition-transform ${
+                            openDropdown === index ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </button>
+
+                      {openDropdown === index && (
+                        <>
+                          <div
+                            className="fixed inset-0 z-10"
+                            onClick={closeDropdown}
+                          />
+                          <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[220px] z-20">
+                            {item.items.map((dropdownItem, dropdownIndex) => {
+                              if (dropdownItem.type === "link") {
+                                return (
+                                  <Link
+                                    key={dropdownIndex}
+                                    href={dropdownItem.href}
+                                    onClick={closeDropdown}
+                                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                  >
+                                    {dropdownItem.label}
+                                  </Link>
+                                );
+                              } else if (dropdownItem.type === "text") {
+                                return (
+                                  <div
+                                    key={dropdownIndex}
+                                    className="px-4 py-2 text-gray-500 text-sm"
+                                  >
+                                    {dropdownItem.label}
+                                  </div>
+                                );
+                              } else if (dropdownItem.type === "button") {
+                                return (
+                                  <button
+                                    key={dropdownIndex}
+                                    onClick={() => {
+                                      dropdownItem.onClick();
+                                      closeDropdown();
+                                    }}
+                                    className="w-full text-left px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                                  >
+                                    {dropdownItem.label}
+                                  </button>
+                                );
+                              }
+                            })}
+                          </div>
+                        </>
+                      )}
+                    </>
+                  )}
+                </div>
+              ))}
+            </nav>
+          )}
+
+          {/* Действия */}
+          {actions && (
+            <div className="flex items-center gap-3 ml-auto">{actions}</div>
+          )}
+        </div>
+      </div>
+    </header>
   );
 }

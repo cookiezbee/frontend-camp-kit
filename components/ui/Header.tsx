@@ -26,13 +26,13 @@ type DropdownItem = DropdownLink | DropdownText | DropdownButton;
 // Типы для навигации
 interface NavigationLink {
   type: "link";
-  label: string;
+  label: string | React.ReactNode;
   href: string;
 }
 
 interface NavigationDropdown {
   type: "dropdown";
-  label: string;
+  label: string | React.ReactNode;
   items: DropdownItem[];
 }
 
@@ -79,7 +79,7 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                       href={item.href}
                       className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                     >
-                      {item.label}
+                      {typeof item.label === 'string' ? item.label : item.label}
                     </Link>
                   ) : (
                     // Dropdown - ОТКРЫВАЕТСЯ ПО КЛИКУ
@@ -88,7 +88,7 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                         onClick={() => toggleDropdown(index)}
                         className="text-gray-700 hover:text-blue-600 font-medium transition-colors flex items-center gap-1"
                       >
-                        {item.label}
+                        {typeof item.label === 'string' ? item.label : item.label}
                         <svg
                           className={`w-4 h-4 transition-transform ${
                             openDropdown === index ? "rotate-180" : ""

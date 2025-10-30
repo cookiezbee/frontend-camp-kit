@@ -1,6 +1,9 @@
 "use client";
 
-import Button from "@/components/ui/test";
+import Button from "@/components/ui/Button";
+import Header from "@/components/ui/test";
+
+import Image from "next/image";
 
 export default function TestComponentsPage() {
 
@@ -17,8 +20,41 @@ export default function TestComponentsPage() {
           <div className="space-y-6">
             <div>
               <div className="flex gap-4 flex-wrap items-center">
-                <Button variant="primary" disabled>Primary</Button>
-                <Button variant="secondary" disabled>Secondary</Button>
+                <Header 
+  logo={
+    <div className="flex items-center gap-2">
+      <div className="text-3xl">🚀</div>
+      <span className="text-xl font-bold text-gray-900">MyApp</span>
+    </div>
+  }
+  navigation={[
+    { type: "link", label: "Главная", href: "/" },
+    { 
+      type: "dropdown",
+      label: "Услуги",
+      items: [
+        { type: "link", label: (
+      <div className="flex items-center gap-2">
+        <Image 
+      src="/icons/check.svg" 
+      alt="Logo" 
+      width={40} 
+      height={40}
+    />
+        <span>Главная</span>
+      </div>
+    ), href: "/services/web" },
+        { type: "link", label: "Дизайн", href: "/services/design" },
+      ]
+    },
+  ]}
+  actions={
+    <>
+      <Button variant="secondary" size="sm">Войти</Button>
+      <Button variant="primary" size="sm">Регистрация</Button>
+    </>
+  }
+/>
               </div>
             </div>
           </div>
