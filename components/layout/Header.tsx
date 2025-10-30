@@ -26,6 +26,7 @@ export default function Header() {
     { name: 'Значок', path: '/components/badge', icon: '🏷️' },
     { name: 'Модальное окно', path: '/components/modal', icon: '🪟' },
     { name: 'Шапка', path: '/components/header', icon: '📰' },
+    { name: 'Боковое меню', path: '/components/sidebar', icon: '📚' },
     { name: 'Подвал', path: '/components/footer', icon: '📄' },
     { name: 'Главная секция', path: '/components/hero', icon: '🎯' },
     { name: 'Счётчик', path: '/components/counter', icon: '🔢' },
