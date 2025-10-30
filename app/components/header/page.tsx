@@ -593,11 +593,12 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
             <div className="bg-white p-6 rounded-xl shadow-sm">
               <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
                 <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
-                Используй Image для логотипа
+                Используй Image
               </h3>
-              <p className="text-gray-600 mb-3">Для логотипа используй компонент Image из Next.js</p>
+              <p className="text-gray-600 mb-3">Для логотипа или для навигационных иконок используй компонент Image из Next.js</p>
               <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm">
-{`import Image from "next/image";
+{`{/* Лого */}
+import Image from "next/image";
 
 <Header 
   logo={
@@ -608,7 +609,32 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
       height={40}
     />
   }
-/>`}
+/>
+
+{/* Навигационные кнопки */}
+
+navigation={[
+  { type: "link", label: "Главная", href: "/" },
+  { 
+    type: "dropdown",
+    label: "Услуги",
+    items: [
+      { type: "link", label: (
+    <div className="flex items-center gap-2">
+      <Image 
+    src="/icons/check.svg" 
+    alt="Logo" 
+    width={40} 
+    height={40}
+  />
+      <span>Главная</span>
+    </div>
+  ), href: "/services/web" },
+      { type: "link", label: "Дизайн", href: "/services/design" },
+    ]
+  },
+]}
+`}
               </pre>
             </div>
 
@@ -782,7 +808,7 @@ border-gray-200  →    border-blue-600`}
         {/* Полный код */}
         <div className="mt-12">
           <ComponentPreview
-            title="Полный код Header с поддержкой иконок"
+            title="Полный код Header"
             description="Скопируй в components/ui/Header.tsx"
             code={headerCode}
           >
