@@ -94,22 +94,40 @@ export default function Header() {
                 <span className="text-xs">▼</span>
               </button>
               
-              {/* Выпадающий список */}
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div className="p-2">
-                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-2">
-                    Все компоненты
+              <div className="absolute top-full -right-48 mt-2 w-96 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 py-2">
+                  Компоненты
+                </div>
+                
+                {/* Две колонки */}
+                <div className="grid grid-cols-2 gap-0 p-2">
+                  {/* Левая колонка */}
+                  <div>
+                    {components.slice(0, 7).map((component) => (
+                      <Link
+                        key={component.path}
+                        href={component.path}
+                        className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      >
+                        <span className="text-xl">{component.icon}</span>
+                        <span className="font-medium text-sm">{component.name}</span>
+                      </Link>
+                    ))}
                   </div>
-                  {components.map((component) => (
-                    <Link
-                      key={component.path}
-                      href={component.path}
-                      className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"
-                    >
-                      <span className="text-xl">{component.icon}</span>
-                      <span className="font-medium">{component.name}</span>
-                    </Link>
-                  ))}
+                  
+                  {/* Правая колонка */}
+                  <div>
+                    {components.slice(7).map((component) => (
+                      <Link
+                        key={component.path}
+                        href={component.path}
+                        className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                      >
+                        <span className="text-xl">{component.icon}</span>
+                        <span className="font-medium text-sm">{component.name}</span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
