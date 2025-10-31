@@ -92,7 +92,8 @@ import { useState, useRef, useEffect } from "react";
 
 interface SelectProps {
   label: string;
-  options: string[];
+  options?: string[];
+  children?: React.ReactNode;
   value?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
@@ -100,7 +101,8 @@ interface SelectProps {
 
 export default function Select({
   label,
-  options,
+  options = [],
+  children,
   value = "",
   onChange,
   placeholder = "Выберите опцию",
@@ -111,7 +113,10 @@ export default function Select({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (selectRef.current && !selectRef.current.contains(event.target as Node)) {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
@@ -137,8 +142,13 @@ export default function Select({
           className={\`
             w-full px-4 py-2 text-left bg-white border rounded-lg
             transition-all
-            \${isOpen ? "border-blue-500 ring-2 ring-blue-200" : "border-gray-300"}
-            hover:border-blue-500 focus:outline-none
+            \${
+              isOpen
+                ? "border-blue-500 ring-2 ring-blue-200"
+                : "border-gray-300"
+            }
+            hover:border-blue-500
+            focus:outline-none
           \`}
         >
           <span className={selectedValue ? "text-gray-900" : "text-gray-400"}>
@@ -152,30 +162,51 @@ export default function Select({
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
           </svg>
         </button>
 
         {isOpen && (
-          <div className="absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-            {options.map((option, index) => (
-              <div
-                key={index}
-                onClick={() => handleSelect(option)}
-                className={\`
-                  px-4 py-2 cursor-pointer transition-colors
-                  hover:bg-blue-50
-                  \${selectedValue === option ? "bg-blue-100 text-blue-600" : "text-gray-700"}
-                \`}
-              >
-                {option}
-                {selectedValue === option && (
-                  <svg className="inline-block float-right w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                )}
-              </div>
-            ))}
+          <div className="absolute z-10 w-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg max-h-96 overflow-y-auto">
+            {children
+              ? children
+              : options.map((option, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleSelect(option)}
+                    className={\`
+                    px-4 py-2 cursor-pointer transition-colors
+                    hover:bg-blue-50
+                    \${
+                      selectedValue === option
+                        ? "bg-blue-100 text-blue-600"
+                        : "text-gray-700"
+                    }
+                  \`}
+                  >
+                    {option}
+                    {selectedValue === option && (
+                      <svg
+                        className="inline-block float-right w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    )}
+                  </div>
+                ))}
           </div>
         )}
       </div>

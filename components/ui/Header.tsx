@@ -6,24 +6,23 @@ import { useState } from "react";
 // Типы для dropdown элементов
 interface DropdownLink {
   type: "link";
-  label: string;
+  label: string | React.ReactNode;
   href: string;
 }
 
 interface DropdownText {
   type: "text";
-  label: string;
+  label: string | React.ReactNode; 
 }
 
 interface DropdownButton {
   type: "button";
-  label: string;
+  label: string | React.ReactNode;
   onClick: () => void;
 }
 
 type DropdownItem = DropdownLink | DropdownText | DropdownButton;
 
-// Типы для навигации
 interface NavigationLink {
   type: "link";
   label: string | React.ReactNode;
@@ -47,12 +46,10 @@ interface HeaderProps {
 export default function Header({ logo, navigation, actions }: HeaderProps) {
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
 
-  // ОТКРЫТИЕ/ЗАКРЫТИЕ ПО КЛИКУ
   const toggleDropdown = (index: number) => {
     setOpenDropdown(openDropdown === index ? null : index);
   };
 
-  // Закрыть dropdown
   const closeDropdown = () => {
     setOpenDropdown(null);
   };
@@ -82,7 +79,6 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                       {typeof item.label === 'string' ? item.label : item.label}
                     </Link>
                   ) : (
-                    // Dropdown - ОТКРЫВАЕТСЯ ПО КЛИКУ
                     <>
                       <button
                         onClick={() => toggleDropdown(index)}
@@ -109,13 +105,11 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                       {/* Выпадающее меню */}
                       {openDropdown === index && (
                         <>
-                          {/* Оверлей для закрытия при клике вне меню */}
                           <div
                             className="fixed inset-0 z-10"
                             onClick={closeDropdown}
                           />
 
-                          {/* Само меню */}
                           <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[220px] z-20">
                             {item.items.map((dropdownItem, dropdownIndex) => {
                               if (dropdownItem.type === "link") {

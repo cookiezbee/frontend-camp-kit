@@ -9,9 +9,9 @@ export default function HeaderPage() {
   const headerCode = `"use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 
+// Типы для dropdown элементов
 interface DropdownLink {
   type: "link";
   label: string | React.ReactNode;
@@ -20,7 +20,7 @@ interface DropdownLink {
 
 interface DropdownText {
   type: "text";
-  label: string | React.ReactNode;
+  label: string | React.ReactNode; 
 }
 
 interface DropdownButton {
@@ -79,11 +79,12 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
               {navigation.map((item, index) => (
                 <div key={index} className="relative">
                   {item.type === "link" ? (
+                    // Обычная ссылка
                     <Link
                       href={item.href}
                       className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                     >
-                      {item.label}
+                      {typeof item.label === 'string' ? item.label : item.label}
                     </Link>
                   ) : (
                     <>
@@ -91,7 +92,7 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                         onClick={() => toggleDropdown(index)}
                         className="text-gray-700 hover:text-blue-600 font-medium transition-colors flex items-center gap-1"
                       >
-                        {item.label}
+                        {typeof item.label === 'string' ? item.label : item.label}
                         <svg
                           className={\`w-4 h-4 transition-transform \${
                             openDropdown === index ? "rotate-180" : ""
@@ -109,12 +110,14 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                         </svg>
                       </button>
 
+                      {/* Выпадающее меню */}
                       {openDropdown === index && (
                         <>
                           <div
                             className="fixed inset-0 z-10"
                             onClick={closeDropdown}
                           />
+
                           <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[220px] z-20">
                             {item.items.map((dropdownItem, dropdownIndex) => {
                               if (dropdownItem.type === "link") {
@@ -162,7 +165,7 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
             </nav>
           )}
 
-          {/* Действия */}
+          {/* Действия (кнопки, иконки) */}
           {actions && (
             <div className="flex items-center gap-3 ml-auto">{actions}</div>
           )}
@@ -303,8 +306,18 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                   type: "link" as const,
                   label: (
                     <div className="flex items-center gap-2">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                        />
                       </svg>
                       <span>Главная</span>
                     </div>
@@ -315,8 +328,18 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                   type: "link" as const,
                   label: (
                     <div className="flex items-center gap-2">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
                       </svg>
                       <span>Контакты</span>
                     </div>
@@ -577,12 +600,16 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-xl shadow-sm">
               <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
-                <span className="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                <span className="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">
+                  1
+                </span>
                 Положи SVG в папку public
               </h3>
-              <p className="text-gray-600 mb-3">Создай папку public/icons/ и положи туда свои SVG файлы</p>
+              <p className="text-gray-600 mb-3">
+                Создай папку public/icons/ и положи туда свои SVG файлы
+              </p>
               <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm">
-{`public/
+                {`public/
   icons/
     home.svg
     mail.svg
@@ -592,12 +619,17 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
 
             <div className="bg-white p-6 rounded-xl shadow-sm">
               <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
-                <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                <span className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">
+                  2
+                </span>
                 Используй Image
               </h3>
-              <p className="text-gray-600 mb-3">Для логотипа или для навигационных иконок используй компонент Image из Next.js</p>
+              <p className="text-gray-600 mb-3">
+                Для логотипа или для навигационных иконок используй компонент
+                Image из Next.js
+              </p>
               <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm">
-{`{/* Лого */}
+                {`{/* Лого */}
 import Image from "next/image";
 
 <Header 
@@ -640,12 +672,16 @@ navigation={[
 
             <div className="bg-white p-6 rounded-xl shadow-sm">
               <h3 className="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
-                <span className="bg-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                <span className="bg-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">
+                  3
+                </span>
                 Для навигации используй JSX
               </h3>
-              <p className="text-gray-600 mb-3">Для иконок в навигации лучше использовать inline SVG через JSX</p>
+              <p className="text-gray-600 mb-3">
+                Для иконок в навигации лучше использовать inline SVG через JSX
+              </p>
               <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-x-auto">
-{`const navigation = [
+                {`const navigation = [
   { 
     type: "link",
     label: (
@@ -678,7 +714,9 @@ navigation={[
               </h3>
               <div className="bg-white p-4 rounded-lg space-y-3">
                 <div>
-                  <p className="font-semibold text-gray-900">1. Ссылка (link)</p>
+                  <p className="font-semibold text-gray-900">
+                    1. Ссылка (link)
+                  </p>
                   <pre className="bg-gray-900 text-gray-100 p-2 rounded text-xs mt-1">
                     {`{ type: "link", label: "Веб-разработка", href: "/services/web" }`}
                   </pre>
@@ -784,9 +822,7 @@ export default function RootLayout({ children }) {
                 3
               </div>
               <div>
-                <h3 className="font-semibold text-lg mb-2">
-                  Настрой под себя
-                </h3>
+                <h3 className="font-semibold text-lg mb-2">Настрой под себя</h3>
                 <p className="text-gray-600 mb-3">
                   Измени цвета в компоненте Header:
                 </p>

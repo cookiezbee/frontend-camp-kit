@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 
+// Типы для dropdown элементов
 interface DropdownLink {
   type: "link";
   label: string | React.ReactNode;
@@ -12,7 +12,7 @@ interface DropdownLink {
 
 interface DropdownText {
   type: "text";
-  label: string | React.ReactNode;
+  label: string | React.ReactNode; 
 }
 
 interface DropdownButton {
@@ -71,11 +71,12 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
               {navigation.map((item, index) => (
                 <div key={index} className="relative">
                   {item.type === "link" ? (
+                    // Обычная ссылка
                     <Link
                       href={item.href}
                       className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
                     >
-                      {item.label}
+                      {typeof item.label === 'string' ? item.label : item.label}
                     </Link>
                   ) : (
                     <>
@@ -83,7 +84,7 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                         onClick={() => toggleDropdown(index)}
                         className="text-gray-700 hover:text-blue-600 font-medium transition-colors flex items-center gap-1"
                       >
-                        {item.label}
+                        {typeof item.label === 'string' ? item.label : item.label}
                         <svg
                           className={`w-4 h-4 transition-transform ${
                             openDropdown === index ? "rotate-180" : ""
@@ -101,12 +102,14 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
                         </svg>
                       </button>
 
+                      {/* Выпадающее меню */}
                       {openDropdown === index && (
                         <>
                           <div
                             className="fixed inset-0 z-10"
                             onClick={closeDropdown}
                           />
+
                           <div className="absolute top-full left-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg py-2 min-w-[220px] z-20">
                             {item.items.map((dropdownItem, dropdownIndex) => {
                               if (dropdownItem.type === "link") {
@@ -154,7 +157,7 @@ export default function Header({ logo, navigation, actions }: HeaderProps) {
             </nav>
           )}
 
-          {/* Действия */}
+          {/* Действия (кнопки, иконки) */}
           {actions && (
             <div className="flex items-center gap-3 ml-auto">{actions}</div>
           )}

@@ -33,6 +33,7 @@ export default function Header() {
     { name: 'Формы', path: '/components/forms', icon: '✉️' },
     { name: 'Частые вопросы', path: '/components/faq', icon: '❓' },
     { name: 'Чекбоксы и радиокнопки', path: '/components/checkbox-radio', icon: '✅' },
+    { name: 'Фильтры', path: '/components/filter', icon: '🔍' },
   ];
 
   return (
